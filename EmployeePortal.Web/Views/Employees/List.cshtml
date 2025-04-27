@@ -1,0 +1,44 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model List<EmployeePortal.Web.Models.Entities.Employee>
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="mb-0">Employees</h1>
+    <a asp-controller="Employees" asp-action="Add" class="btn btn-primary">Add Employee</a>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Designation</th>
+            <th>Experience</th>
+            <th> </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var employee in Model)
+        {
+             <tr>
+                 <td>@employee.Id</td>
+                 <td>@employee.Name</td>
+                 <td>@employee.Designation</td>
+
+                 @if(@employee.Experience){
+                    <td>✔</td>
+                 }else {
+                    <td>❌  </td>
+                 }
+                 
+                 <td>
+                     <a class="btn btn-primary" asp-controller="Employees" asp-action="Edit" asp-route-id="@employee.Id">Edit </a>
+                 </td>
+                 
+             </tr>
+        }
+    </tbody>
+</table>
